@@ -2,6 +2,7 @@ import { Injectable, Get } from '@nestjs/common';
 import { movie } from '../../entities/movie';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { createDiffieHellman } from 'crypto';
 
 @Injectable()
 export class MovieService {
@@ -10,11 +11,19 @@ export class MovieService {
         private readonly movieRepository: Repository<movie>,
       ) {}
 
-      findAll(): Promise<movie[]> {
-        return this.movieRepository.find();
+      findAll() {
+        return this.movieRepository.find({ relations: ["fkGenre"] });
       }
-    getHello(): string {
-        return 'Hello World!';
+
+      getById(id) {
+        return this.movieRepository.createQueryBuilder()
+        .where("id = :ids", { ids: 1 })
+        .execute();
+        
+      }
+
+      create(movie) {
+        return this.movieRepository.save({ ...movie, fecha_registro: new Date() });
       }
 }
 

@@ -5,11 +5,11 @@
     "host": "localhost",
     "port": 3306,
     "username": "root",
-    "password": "root",
+    "password": "persian13",
     "database": "movie",
-    "synchronize": false,
+    "synchronize": true,
     "entities": [
-      "entities/*.js"
+      "entities/*.ts"
     ]
   }
 ]
