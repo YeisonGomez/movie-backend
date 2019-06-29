@@ -19,7 +19,6 @@ export class MovieService {
         return this.movieRepository.createQueryBuilder()
         .where("id = :ids", { ids: 1 })
         .execute();
-        
       }
 
       create(movie) {

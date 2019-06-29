@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateDto } from './dto/create.dto'
+
 @Controller('movie')
 export class MovieController {
     constructor(private readonly movieService: MovieService) {}
