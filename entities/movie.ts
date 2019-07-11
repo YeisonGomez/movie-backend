@@ -36,7 +36,7 @@ export class movie {
         
 
    
-    @ManyToOne(type=>genre, genre=>genre.movies,{ onDelete: 'NO ACTION',onUpdate: 'NO ACTION' })
+    @ManyToOne(type=>genre, genre=>genre.movies,{ onDelete: 'SET NULL',onUpdate: 'SET NULL' })
     @JoinColumn({ name:'fk_genre'})
     fkGenre:genre | null;
 

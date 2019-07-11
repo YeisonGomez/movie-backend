@@ -8,7 +8,7 @@ import { createDiffieHellman } from 'crypto';
 export class MovieService {
     constructor(
         @InjectRepository(movie)
-        private readonly movieRepository: Repository<movie>,
+        private readonly movieRepository: Repository<movie>
       ) {}
 
       findAll() {

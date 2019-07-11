@@ -1,12 +1,17 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateDto } from './dto/create.dto'
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../common/guards/roles.guard';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('movie')
 export class MovieController {
     constructor(private readonly movieService: MovieService) {}
     
     @Get('all')
+    @UseGuards(AuthGuard('bearer'), RolesGuard)
+    @Roles('client')
     getAll() {
         return this.movieService.findAll();
     }

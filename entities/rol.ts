@@ -1,9 +1,9 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
-import {movie} from "./movie";
+import {user_rol} from "./user_rol";
 
 
-@Entity("genre",{schema:"movie" } )
-export class genre {
+@Entity("rol",{schema:"movie" } )
+export class rol {
 
     @PrimaryGeneratedColumn({
         type:"int", 
@@ -14,13 +14,14 @@ export class genre {
 
     @Column("varchar",{ 
         nullable:false,
+        length:100,
         name:"name"
         })
     name:string;
         
 
    
-    @OneToMany(type=>movie, movie=>movie.fkGenre,{ onDelete: 'SET NULL' ,onUpdate: 'SET NULL' })
-    movies:movie[];
+    @OneToMany(type=>user_rol, user_rol=>user_rol.fkRol,{ onDelete: 'CASCADE' ,onUpdate: 'CASCADE' })
+    userRols:user_rol[];
     
 }
